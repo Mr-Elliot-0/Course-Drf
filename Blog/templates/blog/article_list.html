@@ -1,0 +1,13 @@
+{% for i in  object_list %}
+
+<article>
+    <h2>{{i.title}}</h2>
+    <div>{{i.title}}</div>
+    <p>{{i.content}}</p>
+    <br>
+    <span>{{i.publish}}</span>
+</article>
+
+
+{% empty %}
+{% endfor %}
