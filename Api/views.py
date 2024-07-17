@@ -2,7 +2,7 @@
 from .serializers import ArticleSerializer,UserSerializer
 from Blog.models import Article,User
 from django.contrib.auth.models import User
-from rest_framework.generics import ListAPIView,CreateAPIView,ListCreateAPIView,RetrieveAPIView,RetrieveDestroyAPIView,RetrieveUpdateDestroyAPIView
+from rest_framework.generics import ListAPIView,CreateAPIView,DestroyAPIView,ListCreateAPIView,RetrieveAPIView,RetrieveDestroyAPIView,RetrieveUpdateDestroyAPIView
 # Create your views here.
 
 class ArticleList(ListCreateAPIView):
@@ -13,6 +13,7 @@ class ArticleList(ListCreateAPIView):
 class ArticleDetail(RetrieveUpdateDestroyAPIView):
     queryset = Article.objects.filter(status=True)
     serializer_class = ArticleSerializer
+    lookup_field = 'slug'
 
 class UserList(ListCreateAPIView):
     queryset = User.objects.all()
@@ -22,3 +23,9 @@ class UserList(ListCreateAPIView):
 class UserDetail(RetrieveUpdateDestroyAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
+
+
+class JustDeleteArticle(DestroyAPIView):
+    queryset = Article.objects.all()
+    serializer_class = ArticleSerializer
+    lookup_field = "pk"

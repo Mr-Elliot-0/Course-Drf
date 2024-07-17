@@ -13,5 +13,5 @@ class ArticleDetail(DetailView):
     def get_object(self):
         return get_object_or_404(
             Article.objects.filter(status=True),
-            pk=self.kwargs.get("pk"),
+            slug=self.kwargs.get("slug"),
                                  )
